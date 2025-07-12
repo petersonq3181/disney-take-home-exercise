@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useMemo, useState } from 'react';
+import Home from './components/Home';
+import { HomeData } from './types/types';
+import { HomeDataContext } from './context/HomeDataContext';
+import { fetchHomeData } from './utils/fetchHomeData';
 import './App.css';
 
 function App() {
+  const [data, setData] = useState<HomeData | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchHomeData()
+      .then((json) => {
+        setData(json);
+      })
+      .catch((err) => setError(err.message));
+  }, []);
+
+  const contextValue = useMemo(
+    () => ({ data, error }),
+    [data, error]
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HomeDataContext.Provider value={contextValue}>
+      <Home />
+    </HomeDataContext.Provider>
   );
 }
 

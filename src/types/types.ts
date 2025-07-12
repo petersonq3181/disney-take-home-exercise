@@ -1,7 +1,7 @@
 export interface HomeData {
   data: {
     StandardCollection: {
-      containerssss: Container[];
+      containers: Container[];
       [key: string]: any;
     };
   };

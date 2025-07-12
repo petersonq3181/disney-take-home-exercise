@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import Home from './components/Home';
 import { HomeData } from './types/types';
 import { HomeDataContext } from './context/HomeDataContext';
-import { fetchHomeData } from './utils/fetchHomeData';
+import { fetchHomeData } from './utils/utils';
 import './App.css';
 
 function App() {
@@ -12,7 +12,9 @@ function App() {
   useEffect(() => {
     fetchHomeData()
       .then((json) => {
-        setData(json);
+        const typedJson = json as HomeData; 
+        setData(typedJson); 
+        (window as any).homeData = typedJson;  // temp
       })
       .catch((err) => setError(err.message));
   }, []);
@@ -23,9 +25,11 @@ function App() {
   );
 
   return (
-    <HomeDataContext.Provider value={contextValue}>
-      <Home />
-    </HomeDataContext.Provider>
+    <div className="App">
+      <HomeDataContext.Provider value={contextValue}>
+        <Home />
+      </HomeDataContext.Provider>
+    </div>
   );
 }
 

@@ -25,10 +25,12 @@ function App() {
   );
 
   return (
-    <div className="App">
-      <HomeDataContext.Provider value={contextValue}>
-        <Home />
-      </HomeDataContext.Provider>
+    <div className="app-wrapper">
+      <div className="app-fixed">
+        <HomeDataContext.Provider value={contextValue}>
+          <Home />
+        </HomeDataContext.Provider>
+      </div>
     </div>
   );
 }

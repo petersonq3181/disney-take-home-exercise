@@ -1,3 +1,4 @@
+import { forwardRef, useState } from 'react';
 import { Tile as TileType } from '../types/types';
 import { getTileImageUrl } from '../utils/utils';
 
@@ -6,15 +7,26 @@ interface TileProps {
   isFocused: boolean;
 }
 
-function Tile({ tile, isFocused }: TileProps) {
-  const imageUrl = getTileImageUrl(tile);
+// temp patch solution to show an image when the given url image from the data is inaccessible 
+const fallbackUrl = '/fallback.png';
+
+const Tile = forwardRef<HTMLDivElement, TileProps>(({ tile, isFocused }, ref) => {
+  const imageUrl = getTileImageUrl(tile)
+  const [imgSrc, setImgSrc] = useState(imageUrl);
 
   return (
     <div
+      ref={ref}
       className={`tile ${isFocused ? 'tile-focused' : ''}`}
-      style={{ backgroundImage: `url(${imageUrl})` }}
-    />
+    >
+      <img
+        src={imgSrc}
+        onError={() => setImgSrc(fallbackUrl)}
+        alt=""
+        className="tile-img"
+      />
+    </div>
   );
-};
+});
 
 export default Tile;

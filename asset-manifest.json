@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/disney-take-home-exercise/static/css/main.6b1535d1.css",
+    "main.js": "/disney-take-home-exercise/static/js/main.4754dc52.js",
+    "index.html": "/disney-take-home-exercise/index.html",
+    "main.6b1535d1.css.map": "/disney-take-home-exercise/static/css/main.6b1535d1.css.map",
+    "main.4754dc52.js.map": "/disney-take-home-exercise/static/js/main.4754dc52.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6b1535d1.css",
+    "static/js/main.4754dc52.js"
+  ]
+}

@@ -34,16 +34,18 @@ html, body, #root {
   font-size: 1.1rem;
   color: #ffffff;
   margin-bottom: 0.5rem;
+  padding-left: 10px;
   font-weight: 400;
 }
 
 .row-container {
   display: flex;
-  gap: 1rem;               /* space between tiles */
-  overflow-x: auto;        /* enable horizontal scroll */
-  padding: 1rem 0;         /* vertical spacing */
-  padding-left: 4rem;     
-  scroll-behavior: auto; 
+  gap: 16px;
+  padding: 1rem 0;
+  overflow-x: hidden; 
+  padding-left: 10px;
+  padding-right: 10px;
+  scroll-padding-left: 10px;
 }
 
 .row-fade {
@@ -62,9 +64,9 @@ html, body, #root {
 }
 
 .tile {
-  width: 208px;
-  height: 117px;
-  flex-shrink: 0;           /* prevent tile from shrinking */
+  width: 240px;
+  height: 135px;
+  flex-shrink: 0;           
   background-size: cover;
   background-position: center;
   border-radius: 2px;

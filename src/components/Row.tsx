@@ -27,15 +27,17 @@ function Row({ tiles, title }: RowProps) {
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight') {
-        setFocusedIdx((prev) => prev + 1);
-      } else if (e.key === 'ArrowLeft') {
-        setFocusedIdx((prev) => prev - 1);
-      } else if (e.key === ' ') {
+      if (e.key === ' ') {
         e.preventDefault();
         setSelectedTile(loopedTiles[focusedRef.current]);
-      } else if (e.key === 'Escape') {
+      } else { 
         setSelectedTile(null);
+
+        if (e.key === 'ArrowRight') {
+          setFocusedIdx((prev) => prev + 1);
+        } else if (e.key === 'ArrowLeft') {
+          setFocusedIdx((prev) => prev - 1);
+        }
       }
     };
 

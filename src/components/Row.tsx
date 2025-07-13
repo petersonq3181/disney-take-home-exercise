@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Tile as TileType } from '../types/types';
 import Tile from './Tile';
+import Modal from './Modal';
 
 interface RowProps {
   tiles: TileType[];
@@ -16,19 +17,31 @@ function Row({ tiles, title }: RowProps) {
   const endIdx = numTiles + numTiles - 1; 
 
   const [focusedIdx, setFocusedIdx] = useState(startIdx);
+  const [selectedTile, setSelectedTile] = useState<TileType | null>(null);
   
+  const focusedRef = useRef(focusedIdx);
+
+  useEffect(() => {
+    focusedRef.current = focusedIdx;
+  }, [focusedIdx]);
+
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight') {
         setFocusedIdx((prev) => prev + 1);
       } else if (e.key === 'ArrowLeft') {
         setFocusedIdx((prev) => prev - 1);
+      } else if (e.key === ' ') {
+        e.preventDefault();
+        setSelectedTile(loopedTiles[focusedRef.current]);
+      } else if (e.key === 'Escape') {
+        setSelectedTile(null);
       }
     };
 
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
-  }, []);
+  }, []); 
 
   useEffect(() => {
     const el = tileRefs.current[focusedIdx];
@@ -60,6 +73,10 @@ function Row({ tiles, title }: RowProps) {
           />
         ))}
       </div>
+
+      {selectedTile && (
+        <Modal tile={selectedTile} />
+      )}
     </section>
   );
 }

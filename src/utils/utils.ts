@@ -13,8 +13,16 @@ export async function fetchHomeData(): Promise<HomeData> {
   return res.json();
 }
 
-export function getTileImageUrl(tile: TileType) {
+export function getTileImageUrl(tile: TileType): string | undefined {
   const ratioBlock = tile.image?.tile?.[ASPECT_RATIO];
   const firstKey = ratioBlock && Object.keys(ratioBlock)[0];
   return firstKey ? ratioBlock[firstKey]?.default?.url : undefined;
+}
+
+export function getTileTitle(tile: TileType): string | undefined {
+  const titleBlock = tile?.text?.title?.full;
+  if (!titleBlock) return undefined;
+
+  const firstKey = Object.keys(titleBlock)[0];
+  return titleBlock[firstKey]?.default?.content;
 }

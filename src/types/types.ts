@@ -25,6 +25,14 @@ export interface Tile {
         kidsMode: boolean;
     }; 
     image: Image;
+    videoArt: VideoArt[]; 
+    type: string; 
+    releases: {
+        releaseDate: string; 
+        releaseType: string; 
+        releaseYear: number; 
+        territory: any;
+    }[];
     [key: string]: any;
 }
 
@@ -42,4 +50,11 @@ export interface Image {
         };
     };
     [key: string]: any;
+}
+
+export interface VideoArt {
+  purpose: string;
+  mediaMetadata: {
+    urls: { url: string }[];
+  };
 }

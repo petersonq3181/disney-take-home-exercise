@@ -8,7 +8,7 @@ interface TileProps {
 }
 
 // temp patch solution to show an image when the given url image from the data is inaccessible 
-const fallbackUrl = '/fallback.png';
+const fallbackUrl = `${process.env.PUBLIC_URL}/fallback.png`;
 
 const Tile = forwardRef<HTMLDivElement, TileProps>(({ tile, isFocused }, ref) => {
   const imageUrl = getTileImageUrl(tile)

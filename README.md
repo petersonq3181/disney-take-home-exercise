@@ -16,7 +16,7 @@ Quinn Peterson
 
 - Fixed resolution at 720p 
 
-- Found 1 image url in the Home Data JSON which is inaccessilbe  
+- Found 1 image url in the Home Data JSON which is inaccessible  
     - [The Mandalorian image URL](https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/7D608E6263DE25CBA24FF65F0A3FB8CA30EC613EF5B768A5C346B17B1F92BA8D1/scale?format=jpeg&quality=90&scalingAlgorithm=lanczos3&width=500)
     - Patch solution for now to use a temporary fallback.png image in such cases 
 

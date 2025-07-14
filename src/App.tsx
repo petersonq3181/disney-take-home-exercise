@@ -14,7 +14,6 @@ function App() {
       .then((json) => {
         const typedJson = json as HomeData; 
         setData(typedJson); 
-        (window as any).homeData = typedJson;  // temp
       })
       .catch((err) => setError(err.message));
   }, []);

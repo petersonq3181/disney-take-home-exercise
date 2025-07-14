@@ -11,5 +11,4 @@ export const HomeDataContext = createContext<HomeDataContextValue>({
   error: null,
 });
 
-// custom hook 
 export const useHomeData = () => useContext(HomeDataContext);

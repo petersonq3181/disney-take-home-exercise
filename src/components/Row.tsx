@@ -26,24 +26,33 @@ function Row({ tiles, title }: RowProps) {
   }, [focusedIdx]);
 
   useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
+    const handleArrowKey = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') {
+        setFocusedIdx((prev) => prev + 1);
+      } else if (e.key === 'ArrowLeft') {
+        setFocusedIdx((prev) => prev - 1);
+      }
+    };
+
+    window.addEventListener('keydown', handleArrowKey);
+    return () => window.removeEventListener('keydown', handleArrowKey);
+  }, []);
+
+  useEffect(() => {
+    const handleSpaceKey = (e: KeyboardEvent) => {
       if (e.key === ' ') {
         e.preventDefault();
-        setSelectedTile(loopedTiles[focusedRef.current]);
-      } else { 
-        setSelectedTile(null);
-
-        if (e.key === 'ArrowRight') {
-          setFocusedIdx((prev) => prev + 1);
-        } else if (e.key === 'ArrowLeft') {
-          setFocusedIdx((prev) => prev - 1);
+        if (selectedTile) {
+          setSelectedTile(null);
+        } else {
+          setSelectedTile(loopedTiles[focusedRef.current]);
         }
       }
     };
 
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
-  }, []); 
+    window.addEventListener('keydown', handleSpaceKey);
+    return () => window.removeEventListener('keydown', handleSpaceKey);
+  }, [selectedTile, loopedTiles]);
 
   useEffect(() => {
     const el = tileRefs.current[focusedIdx];

@@ -39,7 +39,7 @@ export interface Tile {
 export interface Image {
     tile?: {
         [key: string]: { // expects aspect ratio key 
-            [key: string]: { // for either 'series' or 'program'
+            [key: string]: {
                 default: {
                     masterId: string;
                     masterWidth: string;

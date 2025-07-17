@@ -18,12 +18,6 @@ function Row({ tiles, title }: RowProps) {
 
   const [focusedIdx, setFocusedIdx] = useState(startIdx);
   const [selectedTile, setSelectedTile] = useState<TileType | null>(null);
-  
-  const focusedRef = useRef(focusedIdx);
-
-  useEffect(() => {
-    focusedRef.current = focusedIdx;
-  }, [focusedIdx]);
 
   useEffect(() => {
     const handleArrowKey = (e: KeyboardEvent) => {
@@ -45,7 +39,7 @@ function Row({ tiles, title }: RowProps) {
         if (selectedTile) {
           setSelectedTile(null);
         } else {
-          setSelectedTile(loopedTiles[focusedRef.current]);
+          setSelectedTile(loopedTiles[focusedIdx]);
         }
       }
     };

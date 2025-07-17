@@ -18,15 +18,10 @@ function App() {
       .catch((err) => setError(err.message));
   }, []);
 
-  const contextValue = useMemo(
-    () => ({ data, error }),
-    [data, error]
-  );
-
   return (
     <div className="app-wrapper">
       <div className="app-fixed">
-        <HomeDataContext.Provider value={contextValue}>
+        <HomeDataContext.Provider value={{data, error}}>
           <Home />
         </HomeDataContext.Provider>
       </div>
